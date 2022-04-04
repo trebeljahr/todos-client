@@ -3,6 +3,7 @@ import { AddNewTodo } from "./components/AddNewTodo";
 import { DeleteAllTodosButtons } from "./components/DeleteAllButtons";
 import { FilterForm } from "./components/FilterForm";
 import { SingleTodo } from "./components/Todo";
+import { API_BASE_URL } from "./consts";
 
 export default function App() {
   const [allTodos, setAllTodos] = useState([]);
@@ -10,7 +11,7 @@ export default function App() {
 
   useEffect(() => {
     async function fetchAllTodos() {
-      const response = await fetch("http://localhost:5005/api/todos");
+      const response = await fetch(`${API_BASE_URL}/api/todos`);
       const data = await response.json();
       if (!data.todos) return;
       setAllTodos(data.todos);
@@ -20,7 +21,7 @@ export default function App() {
 
   const updateSingleTodo = async (idToUpdate, updatedTodo) => {
     try {
-      const response = await fetch("http://localhost:5005/api/todos", {
+      const response = await fetch(`${API_BASE_URL}/api/todos`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +45,7 @@ export default function App() {
 
   const deleteSingleTodo = async (idToDelete) => {
     try {
-      const response = await fetch("http://localhost:5005/api/todos", {
+      const response = await fetch(`${API_BASE_URL}/api/todos`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

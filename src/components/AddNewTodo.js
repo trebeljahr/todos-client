@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_BASE_URL } from "../consts";
 
 export function AddNewTodo({ setAllTodos }) {
   const [newTodo, setNewTodo] = useState({ name: "", done: false });
@@ -13,7 +14,7 @@ export function AddNewTodo({ setAllTodos }) {
     }
 
     try {
-      const response = await fetch("http://localhost:5005/api/todos", {
+      const response = await fetch(`${API_BASE_URL}/api/todos`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
